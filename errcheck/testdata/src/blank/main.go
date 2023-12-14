@@ -34,4 +34,15 @@ func main() {
 		var r, _ = b() // want "unchecked error"
 		fmt.Printf("r = %v\n", r)
 	}
+
+	{
+		r, err := b() // want "unchecked error"
+		fmt.Printf("r = %v\n", r)
+		{
+			_, err = b()
+			if err != nil {
+				fmt.Printf("err = %v\n", err)
+			}
+		}
+	}
 }
